@@ -35,6 +35,9 @@ Displays all the added movies in a tabular or card format. Each movie shows its 
 ### ➕ 2. Add New Movie Interface
 Form to enter new movie details: Title, Director, IMDB link, Rating, and Release Year. On submission, the movie gets added to the list.
 ![https://github.com/SaraZ1234/movie-crud-app/blob/main/Add%20Movie.png?raw=true](https://github.com/SaraZ1234/movie-crud-app/blob/main/Add%20Movie.png?raw=true)
+### ✏️ 3. Update Movie Interface
+Form pre-filled with the selected movie's current data. You can update any field and save changes, which immediately reflects in the list.
+![https://github.com/SaraZ1234/movie-crud-app/blob/main/Specific%20update%20movie%20interface.png?raw=true](https://github.com/SaraZ1234/movie-crud-app/blob/main/Specific%20update%20movie%20interface.png?raw=true)
 
 
 
