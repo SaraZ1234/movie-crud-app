@@ -27,4 +27,11 @@ A simple web-based application built with **HTML**, **CSS**, **JavaScript**, **N
 
 ---
 
+## 📸 Screenshots
+
+### 🎬 1. Movie List Interface
+Displays all the added movies in a tabular or card format. Each movie shows its title, director, year, rating, and IMDB link. You can edit or delete movies from here.
+![https://github.com/SaraZ1234/movie-crud-app/blob/main/Home%20page.png?raw=true](https://github.com/SaraZ1234/movie-crud-app/blob/main/Home%20page.png?raw=true)
+
+
 
