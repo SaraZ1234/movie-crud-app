@@ -10,75 +10,117 @@
     />
     <style>
       body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f7fb;
-        padding: 20px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f2f5;
+        padding: 30px;
+        color: #333;
       }
+
+      .add-btn {
+        background-color: #007bff;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 6px;
+        display: inline-block;
+        margin-bottom: 20px;
+        font-size: 16px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .add-btn:hover {
+        background-color: #0056b3;
+      }
+
+      .add-btn i {
+        margin-right: 8px;
+      }
+
       table {
         width: 100%;
         border-collapse: collapse;
         background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
       }
+
       th,
       td {
-        padding: 12px 15px;
+        padding: 14px 16px;
         text-align: left;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #e0e0e0;
       }
+
       th {
-        background-color: #e9f0f8;
+        background-color: #f7faff;
+        font-weight: bold;
+        color: #444;
       }
+
       tr:hover {
-        background-color: #f1f1f1;
+        background-color: #f9f9f9;
       }
+
       .actions i {
         cursor: pointer;
+        font-size: 16px;
+        transition: transform 0.2s ease;
+      }
+
+      .actions a {
         margin-right: 10px;
-        color: #007bff;
+        text-decoration: none;
       }
-      .actions i.fa-trash {
-        color: #007bff;
+
+      .actions a:hover i {
+        transform: scale(1.1);
       }
-      .add-btn {
-        background-color: #e0efff;
-        padding: 10px;
+
+      .actions .fa-pencil-alt {
+        color: #28a745;
+      }
+
+      .actions .fa-trash {
+        color: #dc3545;
+      }
+
+      /* Optional: Search Form */
+      /*
+      form.search-form {
+        margin-bottom: 20px;
+        position: relative;
+        width: 250px;
+      }
+
+      form.search-form input {
+        padding: 10px 10px 10px 35px;
+        width: 100%;
+        border: 1px solid #ccc;
         border-radius: 5px;
-        margin-bottom: 10px;
-        display: inline-block;
+      }
+
+      form.search-form .fa-search {
+        position: absolute;
+        top: 10px;
+        left: 10px;
         color: #007bff;
-        cursor: pointer;
-        font-size: 18px;
       }
-      .add-btn i {
-        margin-right: 6px;
-      }
+      */
     </style>
   </head>
+
   <body>
-    <a href="/host/add_movie" style="text-decoration: none; color: inherit">
-      <div class="add-btn"><i class="fa fa-plus-circle"></i> Add Movie</div>
+    <a href="/host/add_movie" class="add-btn">
+      <i class="fa fa-plus-circle"></i> Add Movie
     </a>
-
-    <!-- <form action="/host/search" method="get" style="margin-bottom: 20px; position: relative; width: 250px;">
-  <i
-    class="fa fa-search"
-    style="position: absolute; top: 10px; left: 10px; color: #007bff;"
-  ></i>
-  <input
-    type="text"
-    name="query"
-    placeholder="Search movies..."
-    style="padding: 10px 10px 10px 35px; width: 100%; border: 1px solid #ccc; border-radius: 5px;"
-  />
-</form> -->
-
 
     <table>
       <thead>
         <tr>
-          <th>Id</th>
+          <th>ID</th>
           <th>Director</th>
-          <th>Imdb</th>
+          <th>IMDB</th>
           <th>Rating</th>
           <th>Title</th>
           <th>Year</th>
@@ -86,22 +128,8 @@
         </tr>
       </thead>
       <tbody>
-        <!-- <tr>
-          <td>2</td>
-          <td>Patty Jenkins</td>
-          <td>7.6</td>
-          <td>PG-13</td>
-          <td>Wonder Woman</td>
-          <td>2018</td>
-          <td class="actions">
-            <i class="fa fa-pencil-alt"></i>
-            <i class="fa fa-trash"></i>
-          </td>
-        </tr> -->
-      </tbody>
-      <tbody>
-        <% if (movies && movies.length > 0) { %> <% movies.forEach((movie,
-        index) => { %>
+        <% if (movies && movies.length > 0) { %>
+        <% movies.forEach((movie, index) => { %>
         <tr>
           <td><%= movie.id %></td>
           <td><%= movie.director %></td>
@@ -110,26 +138,20 @@
           <td><%= movie.title %></td>
           <td><%= movie.year %></td>
           <td class="actions">
-            <a
-              href="/host/<%= movie.id %>?action=update"
-              title="Edit"
-              style="margin-right: 10px; color: green"
-            >
+            <a href="/host/<%= movie.id %>?action=update" title="Edit">
               <i class="fa fa-pencil-alt"></i>
             </a>
-
-            <a
-              href="/host/<%= movie.id %>?action=delete"
-              title="Delete"
-              style="color: red"
-            >
+            <a href="/host/<%= movie.id %>?action=delete" title="Delete">
               <i class="fa fa-trash"></i>
             </a>
           </td>
         </tr>
-        <% }) %> <% } else { %>
+        <% }) %>
+        <% } else { %>
         <tr>
-          <td colspan="7">No movies found.</td>
+          <td colspan="7" style="text-align: center; color: #888;">
+            No movies found.
+          </td>
         </tr>
         <% } %>
       </tbody>
