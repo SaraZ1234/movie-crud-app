@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= editing ? "Edit Movie" : "Add New Movie" %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #e0f7fa, #e1bee7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 20px;
+      }
+
+      .form-container {
+        background-color: white;
+        padding: 30px 35px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 420px;
+        transition: 0.3s;
+      }
+
+      .form-container:hover {
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        color: #4a148c;
+        margin-bottom: 25px;
+        font-size: 26px;
+      }
+
+      label {
+        margin-top: 12px;
+        font-weight: 600;
+        color: #333;
+        display: block;
+      }
+
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        padding: 10px 12px;
+        margin-top: 6px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        transition: 0.2s ease-in-out;
+      }
+
+      input:focus {
+        border-color: #4a148c;
+        outline: none;
+      }
+
+      .form-buttons {
+        margin-top: 25px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .form-buttons button {
+        flex: 1;
+        padding: 12px 0;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 15px;
+        transition: background-color 0.3s;
+      }
+
+      .submit-btn {
+        background-color: #4a148c;
+        color: white;
+      }
+
+      .submit-btn:hover {
+        background-color: #6a1b9a;
+      }
+
+      .cancel-btn {
+        background-color: #e0e0e0;
+        color: #333;
+      }
+
+      .cancel-btn:hover {
+        background-color: #c7c7c7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1><%= editing ? "Edit Movie 🎬" : "Add New Movie 🎥" %></h1>
+
+      <form
+        action="<%= editing ? '/host/update-movie' : '/host/add-movie' %>"
+        method="POST"
+      >
+        <% if (editing) { %>
+        <input type="hidden" name="id" value="<%= movie.id %>" />
+        <% } %>
+
+        <label>Title:</label>
+        <input
+          type="text"
+          name="title"
+          value="<%= editing ? movie.title : '' %>"
+          required
+        />
+
+        <label>Director:</label>
+        <input
+          type="text"
+          name="director"
+          value="<%= editing ? movie.director : '' %>"
+          required
+        />
+
+        <label>IMDB:</label>
+        <input
+          type="text"
+          name="imdb"
+          value="<%= editing ? movie.imdb : '' %>"
+          required
+        />
+
+        <label>Rating:</label>
+        <input
+          type="number"
+          name="rating"
+          step="0.1"
+          value="<%= editing ? movie.rating : '' %>"
+          required
+        />
+
+        <label>Year:</label>
+        <input
+          type="number"
+          name="year"
+          value="<%= editing ? movie.year : '' %>"
+          required
+        />
+
+        <div class="form-buttons">
+          <button type="submit" class="submit-btn">
+            <%= editing ? "Update Movie" : "Add Movie" %>
+          </button>
+          <button
+            type="button"
+            class="cancel-btn"
+            onclick="window.location.href='/host'"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

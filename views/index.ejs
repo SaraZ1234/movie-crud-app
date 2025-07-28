@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD Movie Table</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7fb;
+        padding: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+      }
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #e9f0f8;
+      }
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+      .actions i {
+        cursor: pointer;
+        margin-right: 10px;
+        color: #007bff;
+      }
+      .actions i.fa-trash {
+        color: #007bff;
+      }
+      .add-btn {
+        background-color: #e0efff;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        display: inline-block;
+        color: #007bff;
+        cursor: pointer;
+        font-size: 18px;
+      }
+      .add-btn i {
+        margin-right: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/host/add_movie" style="text-decoration: none; color: inherit">
+      <div class="add-btn"><i class="fa fa-plus-circle"></i> Add Movie</div>
+    </a>
+
+    <!-- <form action="/host/search" method="get" style="margin-bottom: 20px; position: relative; width: 250px;">
+  <i
+    class="fa fa-search"
+    style="position: absolute; top: 10px; left: 10px; color: #007bff;"
+  ></i>
+  <input
+    type="text"
+    name="query"
+    placeholder="Search movies..."
+    style="padding: 10px 10px 10px 35px; width: 100%; border: 1px solid #ccc; border-radius: 5px;"
+  />
+</form> -->
+
+
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Director</th>
+          <th>Imdb</th>
+          <th>Rating</th>
+          <th>Title</th>
+          <th>Year</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td>2</td>
+          <td>Patty Jenkins</td>
+          <td>7.6</td>
+          <td>PG-13</td>
+          <td>Wonder Woman</td>
+          <td>2018</td>
+          <td class="actions">
+            <i class="fa fa-pencil-alt"></i>
+            <i class="fa fa-trash"></i>
+          </td>
+        </tr> -->
+      </tbody>
+      <tbody>
+        <% if (movies && movies.length > 0) { %> <% movies.forEach((movie,
+        index) => { %>
+        <tr>
+          <td><%= movie.id %></td>
+          <td><%= movie.director %></td>
+          <td><%= movie.imdb %></td>
+          <td><%= movie.rating %></td>
+          <td><%= movie.title %></td>
+          <td><%= movie.year %></td>
+          <td class="actions">
+            <a
+              href="/host/<%= movie.id %>?action=update"
+              title="Edit"
+              style="margin-right: 10px; color: green"
+            >
+              <i class="fa fa-pencil-alt"></i>
+            </a>
+
+            <a
+              href="/host/<%= movie.id %>?action=delete"
+              title="Delete"
+              style="color: red"
+            >
+              <i class="fa fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+        <% }) %> <% } else { %>
+        <tr>
+          <td colspan="7">No movies found.</td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </body>
+</html>
